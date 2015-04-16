@@ -7,7 +7,7 @@ It's filled with things we've learned based on our own experience and study of o
 
 We've made our playbook freely available so others may use our tactics in their own companies or projects. While our "plays" have worked for us, we trust their judgment over ours to decide which tools and techniques might work for them, too. 
 
-This playbook is a modified version of [thoughtbot's playbook](playbook.thoughtbot.com). Thank you to [thoughtbot](thoughtbot.com) for making their playbook available to the public!
+This playbook is a modified version of [thoughtbot's playbook](playbook.thoughtbot.com). Thank you to [thoughtbot](thoughtbot.com) for making their playbook available to the public.
 
 ## Guiding Principles
 We regularly eliminate and simplify policies. Our most important policy is "use your best judgement".
@@ -31,16 +31,12 @@ Unless actually urgent, you may ignore off-hours messages which you receive and 
 
 We make our money doing software consulting. Projects start with sales and go through a normal flow of discovery, designing, developing, shipping, monitoring, and iterating. We should do such a good job for our clients that they will want to poach us, and be such a great place to work that we can be confident our teammates won't leave.
 
-## Product Design Sprint
-TODO: leave in?
-"Most people make the mistake of thinking design is what it looks like. People think it's this veneer — that the designers are handed this box and told, 'Make it look good!' That's not what we think design is. It's not just what it looks like and feels like. Design is how it works." - Steve Jobs
-
+## Product Design Sprints
 Product Design Sprints, an invention of Google Ventures' design team, are 5-phase exercises intended to improve the chances of making something people want. We want to turn false confidence into validated confidence before beginning an expensive build. Or, we want to dodge bullets by learning that we shouldn't begin the expensive build at all.
 
 Sprints are useful starting points when kicking off a new product or workflow, as well as solving problems with an existing product. They typically last 5 days but we have done them in less time. We get as many stakeholders and expertises in the room as we can.
 
 Product design sprints are test-driven design.
-
 
 ### Prep Work
 
@@ -56,7 +52,7 @@ They also gather research from sources such as:
     - Schedule and run user interviews.
     - Deploy a short survey whose results we can review in the first phase.
 
-We typically order breakfast for the first day to make it feel special but don't order lunch for each day of the sprint. For both the sprints and normal days, we believe it's important to not have "working lunches", instead breaking from work for a short time to rest the brain, maybe get some fresh air, and interact with teammates and clients.
+For both the sprints and normal days, we believe it's important to not have "working lunches", instead breaking from work for a short time to rest the brain, maybe get some fresh air, and interact with teammates and clients.
 
 ### Understand
 
@@ -170,7 +166,8 @@ After considering what's best for users, what's best for us?
 The tools are open source with a strong community
 The tools make us happy
 The tools help us create and iterate quickly
-Web Apps
+
+### Web Apps
 
 In our experience, Ruby on Rails web apps tend to be fast to market and have a low total cost of ownership because they are highly conventional. One Rails app's codebase looks very similar to other Rails app's codebases. There's also strong overlap between agile and Ruby communities, which means (among things) that Ruby developers tend to write tests, use object-oriented design, and avoid repeated code.
 
@@ -201,7 +198,7 @@ On mobile devices, we support iOS Safari 7.1+, Android Browser 4.4+, and the lat
 
 In limited special cases, user demographics will dictate that supporting an older version of Internet Explorer is required. Those special cases should be identified early on so we can plan for additional time and expense in order to support the version.
 
-## Mobile Apps
+### Mobile Apps
 
 "Mobile" refers to the user, not the device.
 
@@ -250,7 +247,7 @@ Examples of frameworks we typically use are:
   * jQuery
   * Angular.js
   * Ember.js
-  * iOS Core Data
+  * node.js
 
 A framework is a library that makes performing a particular task in a programming language easier. Like the framework of a house, it is there when we begin programming and is always there giving the program structure and support.
 
@@ -679,10 +676,9 @@ Follow these steps for adding a DNSimple SSL certificate to Heroku.
 SSL and DNS are tightly coupled. If we're doing any work with SSL, we need to make sure we have access to make DNS changes, like adding a CNAME record. If we're working with a client who has a department that handles DNS, schedule time during off-peak hours to pair program with the DNS person to make sure everything goes well. We can accidentally take down a site that is all SSL if this work isn't done methodically.
 
 ## Hosting
-TODO
-We use Heroku. It's a platform built on Amazon's cloud infrastructure. It is simple to use when our app is just a toy and is built to scale up for high concurrency or high sustained load.
+Hosting requirements are frequently determined by many factors including price, performance, ease-of-use, and ease-of-automation. For quick and easy hosting, we tend to use Heroku. It's a platform built on Amazon's cloud infrastructure. It is simple to use when our app is just a toy and is built to scale up for high concurrency or high sustained load.
 
-Like Rails, Heroku uses conventions to make decisions for us that are unnecessary for us to make. Some things like web servers and app servers are solved problems. They act as our outsourced operations team. The amount of time we can focus on the product instead of solved problems is worth the premium over bare-bones Amazon Web Services.
+We also use Amazon Web Services when required.
 
 The cloud promises lower operating costs, especially at the beginning when capacity can be lower. Forget about sunk costs of expensive servers.
 
@@ -692,9 +688,9 @@ If we offer file uploads for features like user avatars, we upload them to Amazo
 
 We also serve our images, CSS, and JavaScript assets from a CDN such as Fastly.
 
-Performance Monitoring
+## Performance Monitoring
 
-We use NewRelic (Free-$100s/month) to monitor performance of production applications.
+Unless otherwise specified by the client, we use NewRelic (Free-$100s/month) to monitor performance of production applications.
 
 Debugging performance might be the best part of a developer's job. There's a clear, numeric problem. When we fix it, that number improves. We can say things like "We made this 175% better."
 
@@ -711,13 +707,13 @@ Eager loading
 HTTP caching
 Page caching is the heaviest handed technique we have, but if we can cache an entire page and push it into a CDN, that will be the fastest option.
 
-Error Tracking
+## Error Tracking
 
-We use Airbrake Bug Tracker (Free-$25/month).
+Unless otherwise specified by the client, we use Airbrake Bug Tracker (Free-$25/month).
 
 ## Transactional Email
 
-We use SendGrid (Free-$400/month) to have our application deliver email to users, known as transactional email.
+Unless otherwise specified by the client, we use SendGrid (Free-$400/month) to have our application deliver email to users, known as transactional email.
 
 Examples of transactional email are:
 
@@ -730,13 +726,13 @@ We use SendGrid directly, not via the Heroku add-on, in order to avoid being lum
 
 ## Payment Processing
 
-For collecting payments from users via credit or debit card, we use Stripe. It is a payment gateway and merchant account. We also use it for recurring billing.
+For collecting payments from users via credit or debit card, we can integrate with all major payment processors. For ease of development, we tend to use Stripe. It is a payment gateway and merchant account. We also use it for recurring billing.
 
 Charges for Stripe will vary depending on usage. Successful charges are 2.9% + 30 cents. There are no setup fees, monthly fees, or card storage fees.
 
 For sending money to users' bank accounts via ACH, we use Balanced.
 
-Measuring
+## Measuring
 "If you can not measure it, you can not improve it." -- Lord Kelvin
 
 The difficult part of measuring is deciding what to track.
@@ -821,9 +817,7 @@ Churn is particularly critical when fundraising. Small changes in churn can dras
 
 Calculating CAC is a manual spreadsheet exercise. It requires adding employee overhead costs and direct marketing costs together, then dividing by the number of new customers for that month.
 
-For Upcase, we can rely on our bookkeeper, AccountingDepartment.com to provide us with those numbers, and make adjustments for which vendors such as Google (AdWords), Twitter, or AdRoll fall under the direct marketing accounting class.
-
-A/B Testing
+## A/B Testing
 
 Someone can tell us in a usability test when they're confused by a page or when they're frustrated by upsells during the checkout process. They probably can't tell us whether one set of copy or another is more likely to make them feel an affinity with our landing page, pull out their wallet, and plunk down cash.
 
@@ -831,7 +825,7 @@ So, we A/B test landing pages and payment flows.
 
 We don't A/B test price. Users talk to each other and it can make customer support difficult. We test the price off-line via customer interviews instead.
 
-Feature Flags
+## Feature Flags
 
 Software is soft. It's always changing. Hopefully, we're always learning from our changes.
 
@@ -844,7 +838,7 @@ The following section details how our sales process works and answers commonly a
 
 The overall process is:
 
-  * Someone contacts us.
+  * A new lead contacts us or is contacted by someone doing sales.
   * We have them fill out our new project form.
   * We have a phone call or have them come into the office.
   * Qualify/disqualify: are we a good fit for the client?
@@ -865,10 +859,6 @@ We track each lead on a Trello card in the "Contacted" list on our "Sales" board
 
 ### Sales Trello board
 We manually create cards for personal introductions. Our new project form automatically creates cards for each submission. Zapier automatically creates cards for each voicemail we receive into our main phone line.
-
-The Managing Director will get assigned to the card for the incoming lead but anyone can take responsibility for that lead. The person responsible qualifies or disqualifies the lead, often with a quick intro email or phone call with the potential client. Before they do that they should add themselves as a member on the Trello card.
-
-We prefer to pair on sales calls, having at least one designer and one developer on the call. This enables us to get multiple opinions on how good or bad of a fit the client and project might be for us, it gives us the ability to answer both design and development questions to the best of our ability, and it allows us to train and improve our process during sales calls.
 
 ## Understanding Product Vision
 
@@ -909,21 +899,17 @@ If the NDA is important to the client, ask them to tell us enough about the busi
 
 ## Roles
 
-We offer some combination of designers, Ruby developers, and iOS developers. An advisor assists the team for a few hours a week. Everyone is T-shaped, deep in some area of expertise with the ability to collaborate across disciplines.
-
 We are people, not "resources", and avoid calling each other such because we understand we are working with each other as people.
 
-The designer is responsible for designing interactions between users and the product. They write user interface code.
+The designer is responsible for designing interactions between users and the product.
 
-The developers make it work. They write the code that makes the app "smart." They aim to make the product error-free. They monitor performance because speed is a feature of every application.
+Frontend engineers are responsible for architecting and building the user interface and all interactions.
 
-Developers keep it running. They make architectural decisions and interact with modern-day hosting companies like Heroku, whose employees double as our outsourced operations team.
+Backend engineers write the code that powers the frontend and monitor performance because speed is a feature of every application.
 
-The developers also implement. They write and maintain HTML, CSS, JavaScript, Ruby, SQL, and lots of other code. They set and meet development standards, keep the Continuous Integration build passing, and review each others' code.
+A project maanger is responsible for client communication, translation of requirements, and monitoring the performance of the team.
 
-The advisor adds an impartial perspective. They run weekly meetings so that there is consistency in week-to-week communication. They keep an eye on the high-level goals of the project, which should be easier for them because they are not in the weeds of the project day-to-day. They express enthusiasm when the team is in a groove and help problem-solve when things get off track.
-
-When appropriate, they should work with the client to either reduce or increase team size to correctly serve the project.
+When appropriate, everyone should work through a project manager to either reduce or increase team size to correctly serve the project.
 
 While each person plays a role, a team needs to be a team.
 
@@ -968,8 +954,9 @@ We don't provide itemized invoices to clients showing individual pieces of work 
 Examples of typical projects for us are:
 
   * "Product design sprint", 2 people, 1 week
-  * "Zero to Version 1", 2 people, 4 weeks
+  * "MVP", 2 people, 4-6 weeks
   * "Fill a gap until an internal team is hired", 2 people, 3 months
+  * "Interim technical leadership", 1 person, 3-9 months
   * "Staff augmentation with existing internal team", 3 people, 6 months
   * "Maintenance team", retainer per month
 
@@ -980,8 +967,6 @@ The feature set of a product is not necessarily indicative of the length of time
 In return, we understand that we can never abuse a client's trust in us. We should be maximizing our productivity in order to provide them the most value for our time. Things like our "Research" Trello board, "Code" internal chat room, and shared dotfiles ensure we have a highest common denominator set of tools and techniques ready when the situation arises again.
 
 ## Contract
-
-We store contracts in Dropbox and have a series of folders for pending, current, past, and lost clients.
 
 The consulting proposal and contract contains:
 
@@ -1017,76 +1002,13 @@ We tell them:
   * To learn to do what we do, sit next to us in our office for weeks at a time, pair programming and sketching together.
   * To hire someone, follow the same process we use, detailed below.
 
-## Recruiting
-
-We've met our future teammates via:
-
-  * GitHub
-  * User groups
-  * Dev Bootcamp
-  * Authentic Jobs
-  * Stack Overflow Careers
-
-## Interviewing
-
-We track each candidate's progress through the interview process on a Trello card on our "Hiring" board:
-
-We manually create cards for personal introductions. Our new teammate form automatically creates cards for each submission.
-
-Our CEO, Chad, leads the hiring process. He ensures that everyone gets a response and he speaks with everyone before they are hired.
-
-Anyone can do an initial review of the candidate's application. In particular, they review the candidate's code sample or portfolio. If necessary, they may ask someone else (like a designer or iOS developer) for another pair of eyes on the code or portfolio.
-
-We either send them a rejection or an email based on this template, moving the Trello card to "Non-Technical Interview".
-
-Chad will pull the managing director, designers, or developers into subsequent discussions, putting their faces on the Trello cards to ensure we always know who is responsible.
-
-We have standard questions for iOS developers, Rails developers, and designers for the technical interview. We don't use puzzles or code challenges. Instead, we prefer reviewing actual work the candidate has done, and talking to them about design process, architecting systems, and writing code; the same thing we do for work every day.
-
-The final step for candidates is to visit us for a day. We pay for their flights and three nights of hotels (rest up Thursday night, work with us on Friday, enjoy Friday night, explore the city Saturday, fly home Sunday).
-
-On that day, developers pair program with one of our developers in the morning and another in the afternoon.
-
-We do the interviews this way because there's no substitute for seeing someone actually do the work and interacting with the team. We also want candidates to experience what the company is like for themselves.
-
-Aside from technical skill, during the entire interview process, we look for character strengths like enthusiasm (invigorates others), focus (pays attention, resists distractions, remembers directions), composure (remains calm when critiqued, doesn't interrupt), gratitude (shows appreciation), curiosity (eager to explore, asks questions to understand, actively listens), optimism (gets over frustrations quickly), grit (finishes what he or she starts, doesn't get blocked), emotional intelligence (demonstrates respect for others' feelings, knows when and how to include others), humor (likes to laugh, makes others smile), and appreciation of beauty (notices and appreciates beauty and excellence).
-
-To be hired, the candidate must get a unanimous "yes" from the existing teammates with whom they interacted.
-
 ## Compensation
 
-We are entirely bootstrapped, with no outside investors, and no debt. We are paid for consulting only four days each week.
+We are entirely bootstrapped, with no outside investors, and no debt.
 
-Sustainability of the company is very important to us. We want to bring great people on at reasonable salaries and reward them as aggressively as possible for actual performance.
+Sustainability of the company is very important to us. We want to bring great people on at reasonable rates and reward them as aggressively as possible for actual performance.
 
-We may never be able to compete dollar for dollar with other tech companies but we can compete on being a great place to work, with lots of opportunities to learn, and the freedom to define and execute on our own projects.
-
-## Quarterly Reviews
-
-In order to continually improve ourselves and the company, all year round on every project we're on, we receive regular feedback from clients, managers, and teammates. We additionally have quarterly reviews for more formal review and potential salary increases.
-
-During onboarding, a "Quarterly Review" calendar event is created, set to recur once every 3 months, starting from the hire date.
-
-The agenda for quarterly reviews is roughly:
-
-  * Our performance on recent consulting projects
-  * Our investment time contributions
-  * Our satisfaction with our work, projects, and the company
-  * Our questions about strategy
-  * Our areas of focus for the next quarter
-
-Salary increases are the natural result of improvement. Our manager may increase our salary during quarterly reviews in a way that is compatible with the company's finances and individually appropriate to us based on things we've done, such as:
-
-  * creating great software
-  * making users and clients happy
-  * improving ourselves by learning something new
-  * improving the business by bringing in sales, mentoring a teammate, contributing to an internal tool or research
-  * improving our community by writing blog posts, contributing to open source, or attending conferences
-  * doing the things we didn't think to put on this list
-
-We may receive an additional salary increase based on market conditions and cost of living increases.
-
-It's important that our manager explains why a raise is being given and what, if anything, could be done to receive a higher raise next time. We don't get raises for "just showing up."
+We may never be able to compete dollar for dollar with other tech companies but we can compete on being a great place to work, with lots of opportunities to learn, and the freedom to define and execute as much or as little as they like.
 
 ## Operations
 Running a software-based business requires more than beautiful code or a popular product. Managing cash flow and taxes can feel unimportant or difficult but getting them right is as vital to our success as product design.
@@ -1102,16 +1024,6 @@ Some principles have helped us streamline our operations:
   * Try to avoid building internal tools. It requires time and money to build and makes us reliant on ourselves when things don't work.
 
 Our problems are not unique. We will try manual processes first. When we do build something, it is usually after using other things for years.
-
-## Expenses
-
-Every full-time employee gets an American Express corporate card for business expenses. We've hired trustworthy people. Use your best judgement on how much to spend and what is a business expense. It saves time and treats people like adults.
-
-We buy things. The IRS appreciates it when we track those purchases. So do we, in order to know whether we're profitable.
-
-We use Shoeboxed to send all receipts (meals, travel, books, computers) to our accountant.
-
-There are also handy iPhone and Android apps which take photos of receipts and send them on their way.
 
 ## Email
 
@@ -1158,35 +1070,6 @@ We use conference lines that are part of our VoIP system, provided by OnSip, for
 ## Sharing
 We've learned a ton from blog posts, tweets, and newsletters from others in the community. We should be giving back when we have something to share.
 
-### Blog
-
-When you want to write a post, write its headline as a Trello card in the "Next Up" list of the Editorial Calendar board. Assign the Trello card to yourself ("put your face on it").
-
-Spend time writing and re-writing a great headline. It helps you narrow your focus, figure out the purpose of the post, and grab people's attention in the first place.
-
-When you begin writing, move the Trello card to the "Drafts" list.
-
-Write the post in Markdown in the our blog's GitHub repo. Add tags to the post. Tags help our readers find related blog posts.
-
-When you're ready for feedback from the team, move the card to "In Review" list and share the Trello card's URL with the team in Slack. Make changes based on their feedback and your judgement.
-
-When the post is ready to publish, give it a published date, merge, and deploy.
-
-Our RSS feed, Zapier, Buffer accounts are set up to automatically work together to link to the post from Twitter, Facebook, Google+, and LinkedIn.
-
-Link to the post from Hacker News, Reddit, Delicious, Pinboard, or other appropriate sites.
-
-Move the Trello card to "Live."
-
-## Twitter
-Be conversational, casual, and real on the Twitter account. Talk the same way as you would in person amongst ourselves. Be good-humored. Puns are encouraged. Keep the quality high. Aim for every tweet to be a hit. Avoid spelling mistakes. Use punctuation if writing sentences. Respect the people who follow us. To reach the largest audience, don't begin a tweet with a Twitter username.
-
-Some tweet ideas include announcing meetups, open source releases, enthusiasm about a new tool or technique, tips on Git, Unix, and Vim, links to our blog posts, links to others' blog posts if they are excellent and not on the current Hacker News or Twitter cycle at the moment, and Funkmaster Flex.
-
-We have a verified Twitter account and are a Twitter Ads customer. Use the @epsiloneight credentials in 1Password to see analytics such as number of retweets, favorites, replies, clicks, follows, unfollows, and how tweets compare in terms of engagement.
-
-Promoted Tweets campaigns are best for short term campaigns to drive traffic to a website. Target 10-25 similar, relevant @usernames in each campaign. Create different campaigns for different themes of people so that we can track performance per theme.
-
 ## Open Source
 
 We've created a number of open source libraries to help us perform common tasks and give back to the community.
@@ -1217,6 +1100,6 @@ Fixing bugs that affect client projects or introducing small features that would
 
 Think about whether your idea makes more sense as a pull request to an existing project.
 
-Goodbye
+
 
 epsilon eight is company that cares about making great software. Thank you for being a part of the team.
